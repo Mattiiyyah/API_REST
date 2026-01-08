@@ -1,9 +1,28 @@
 import Aluno from '../models/Aluno';
+import Foto from '../models/Foto';
 
 class AlunoController {
   //Index
   async index(req, res) {
-    const alunos = await Aluno.findAll();
+    const alunos = await Aluno.findAll({
+      attributes: [
+        'id',
+        'nome',
+        'sobrenome',
+        'email',
+        'idade',
+        'peso',
+        'altura',
+      ],
+      order: [
+        ['id', 'DESC'],
+        ['Fotos', 'id', 'DESC'],
+      ],
+      include: {
+        model: Foto,
+        attributes: ['id', 'url', 'originalname', 'filename'],
+      },
+    });
     res.json(alunos);
   }
 
@@ -33,14 +52,34 @@ class AlunoController {
 
   //Show
   async show(req, res) {
+    const { id } = req.params;
+
     try {
-      if (!req.params.id) {
+      if (!id) {
         return res.status(400).json({
           errors: ['Faltando o ID'],
         });
       }
 
-      const aluno = await Aluno.findByPk(req.params.id);
+      const aluno = await Aluno.findByPk(id, {
+        attributes: [
+          'id',
+          'nome',
+          'sobrenome',
+          'email',
+          'idade',
+          'peso',
+          'altura',
+        ],
+        order: [
+          ['id', 'DESC'],
+          ['Fotos', 'id', 'DESC'],
+        ],
+        include: {
+          model: Foto,
+          attributes: ['id', 'url', 'originalname', 'filename'],
+        },
+      });
 
       if (!aluno) {
         return res.status(400).json({
@@ -48,17 +87,7 @@ class AlunoController {
         });
       }
 
-      const { id, nome, sobrenome, email, idade, peso, altura } = aluno;
-
-      return res.json({
-        id,
-        nome,
-        sobrenome,
-        email,
-        idade,
-        peso,
-        altura,
-      });
+      return res.json(aluno);
     } catch (e) {
       console.log(e);
       return res.status(400).json({
