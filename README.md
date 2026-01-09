@@ -52,6 +52,7 @@ Este projeto é uma API RESTful desenvolvida durante o **Curso de JavaScript e T
    TOKEN_SECRET=seu_segredo_jwt
    TOKEN_EXPIRATION=7d
    APP_URL=http://localhost:3001
+APP_PORT=3001
    ```
 
 4. **Prepare o Banco de Dados:**
