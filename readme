@@ -34,7 +34,7 @@ Para rodar o projeto, você precisará ter instalado em sua máquina:
 
 1.  **Clone o repositório:**
     ```bash
-    git clone https://github.com/Mattiiyyah/API_REST
+    git clone https://github.com/Mattiiyyah/API_REST.git
     cd API_REST
     ```
 
@@ -77,39 +77,3 @@ Para iniciar o servidor em ambiente de desenvolvimento:
 
 ```bash
 npm run dev
-
-
-## 🛣️ Rotas Principais
-
-### Tokens
-* `POST /tokens/` - Login (Gera o Token JWT).
-
-### Usuários
-* `POST /users/` - Cria novo usuário.
-* `PUT /users/` - Edita usuário logado (Requer Token).
-* `DELETE /users/` - Deleta usuário logado (Requer Token).
-
-### Alunos
-* `GET /alunos/` - Lista alunos.
-* `GET /alunos/:id` - Exibe um aluno.
-* `POST /alunos/` - Cria aluno (Requer Token).
-* `PUT /alunos/:id` - Edita aluno (Requer Token).
-* `DELETE /alunos/:id` - Deleta aluno (Requer Token).
-
-### Fotos
-* `POST /fotos/` - Upload de foto para aluno (Requer Token).
-
----
-
-## 📚 Aprendizados
-
-Principais conceitos praticados durante o desenvolvimento:
-* Estrutura **MVC** (Model, View, Controller).
-* Configuração de **EditorConfig**, **ESLint** e **Prettier**.
-* Manipulação de banco de dados relacional com **Sequelize**.
-* Autenticação e Autorização com **JWT**.
-* Upload de arquivos estáticos.
-
----
-
-Feito com 💜 por Matheus.
